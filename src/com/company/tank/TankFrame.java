@@ -28,15 +28,17 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics graphicsg) {
         graphicsg.fillRect(x, y, 50, 50);
-        x = x + 100;
-        y = y + 100;
+        x = x + 10;
+        // y = y + 100;
     }
 
     class MyKsyListener extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("1");
+            x = x + 200;
+            // 默认调用paint方法
+            // repaint();
         }
 
         @Override
