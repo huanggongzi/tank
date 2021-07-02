@@ -5,6 +5,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.*;
+import java.util.List;
 
 public class TankFrame extends Frame {
     int x = 200;
@@ -28,22 +30,65 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics graphicsg) {
         graphicsg.fillRect(x, y, 50, 50);
-        x = x + 10;
-        // y = y + 100;
     }
 
+    /**
+     * 接受键盘的
+     */
     class MyKsyListener extends KeyAdapter {
 
+        boolean bL = false;
+        boolean bR = false;
+        boolean bU = false;
+        boolean bD = false;
+
+        // 键盘按下发生的方法
         @Override
         public void keyPressed(KeyEvent e) {
-            x = x + 200;
+            // 键的代码
+            int key = e.getKeyCode();
+            switch (key) {
+                case KeyEvent.VK_LEFT:
+                    bL = true;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    bR = true;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    bD = true;
+                    break;
+                case KeyEvent.VK_UP:
+                    bU = true;
+                    break;
+                default:
+                    break;
+            }
+
             // 默认调用paint方法
             // repaint();
         }
 
+        // 键盘抬起来发生的操作
         @Override
         public void keyReleased(KeyEvent e) {
-            System.out.println("2");
+            int key = e.getKeyCode();
+            switch (key) {
+                case KeyEvent.VK_LEFT:
+                    bL = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    bR = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    bD = false;
+                    break;
+                case KeyEvent.VK_UP:
+                    bU = false;
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }
