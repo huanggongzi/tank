@@ -6,7 +6,25 @@ public class Tank {
     int x;
     int y;
     Dir dir;
+    private boolean moving = false;
     private int SPEED;
+
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
+    public Dir getDir() {
+        return dir;
+    }
+
+    public void setDir(Dir dir) {
+        this.dir = dir;
+    }
+
 
     public Tank(int x, int y, Dir dir, int SPEED) {
         this.x = x;
@@ -17,19 +35,26 @@ public class Tank {
 
     public void paint(Graphics graphicsg) {
         graphicsg.fillRect(x, y, 50, 50);
-        switch (dir) {
-            case LEFT:
-                x = x - SPEED;
-                break;
-            case RIGHT:
-                x = x + SPEED;
-                break;
-            case UP:
-                y = y - SPEED;
-                break;
-            case DOWN:
-                y = y + SPEED;
-                break;
+        move(moving);
+    }
+
+    public void move(boolean moving) {
+        System.out.println(dir);
+        if (moving) {
+            switch (dir) {
+                case LEFT:
+                    x = x - SPEED;
+                    break;
+                case RIGHT:
+                    x = x + SPEED;
+                    break;
+                case UP:
+                    y = y - SPEED;
+                    break;
+                case DOWN:
+                    y = y + SPEED;
+                    break;
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 package com.company.tank;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.TagName;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -8,7 +10,6 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN, 10);
-    Tank otherTank = new Tank(100, 100, Dir.DOWN, 10);
 
     public TankFrame() {
         setSize(800, 600);
@@ -28,13 +29,13 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics graphicsg) {
         myTank.paint(graphicsg);
-        otherTank.paint(graphicsg);
     }
 
     /**
      * 接受键盘的
      */
     class MyKsyListener extends KeyAdapter {
+
         boolean bL = false;
         boolean bR = false;
         boolean bU = false;
@@ -61,8 +62,8 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            myTank.setMoving(true);
             myTank.setMainTankDir(bL, bR, bU, bD);
-            otherTank.setMainTankDir(bL, bR, bU, bD);
             // 默认调用paint方法
             // repaint();
         }
@@ -87,8 +88,9 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            myTank.setMoving(false);
             myTank.setMainTankDir(bL, bR, bU, bD);
-            otherTank.setMainTankDir(bL, bR, bU, bD);
         }
+
     }
 }
