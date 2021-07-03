@@ -7,10 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
-    int x = 200;
-    int y = 200;
-    Dir dir = Dir.DOWN;
-    private static final int SPEED = 10;
+    Tank myTank = new Tank(200, 200, Dir.DOWN, 10);
+    Tank otherTank = new Tank(100, 100, Dir.DOWN, 10);
 
     public TankFrame() {
         setSize(800, 600);
@@ -29,29 +27,14 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics graphicsg) {
-        graphicsg.fillRect(x, y, 50, 50);
-
-        switch (dir) {
-            case LEFT:
-                x = x - SPEED;
-                break;
-            case RIGHT:
-                x = x + SPEED;
-                break;
-            case UP:
-                y = y - SPEED;
-                break;
-            case DOWN:
-                y = y + SPEED;
-                break;
-        }
+        myTank.paint(graphicsg);
+        otherTank.paint(graphicsg);
     }
 
     /**
      * 接受键盘的
      */
     class MyKsyListener extends KeyAdapter {
-
         boolean bL = false;
         boolean bR = false;
         boolean bU = false;
@@ -78,7 +61,8 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            setMainTankDir();
+            myTank.setMainTankDir(bL, bR, bU, bD);
+            otherTank.setMainTankDir(bL, bR, bU, bD);
             // 默认调用paint方法
             // repaint();
         }
@@ -103,22 +87,8 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            setMainTankDir();
-        }
-
-        public void setMainTankDir() {
-            if (bL) {
-                dir = Dir.LEFT;
-            }
-            if (bR) {
-                dir = Dir.RIGHT;
-            }
-            if (bU) {
-                dir = Dir.UP;
-            }
-            if (bD) {
-                dir = Dir.DOWN;
-            }
+            myTank.setMainTankDir(bL, bR, bU, bD);
+            otherTank.setMainTankDir(bL, bR, bU, bD);
         }
     }
 }
