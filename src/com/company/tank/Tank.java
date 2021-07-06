@@ -7,12 +7,12 @@ public class Tank {
     int y;
     Dir dir;
     private boolean moving = false;
-    private int SPEED;
+    private static final int SPEED = 5;
 
     public boolean isMoving() {
         return moving;
     }
-
+ 
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
@@ -26,11 +26,10 @@ public class Tank {
     }
 
 
-    public Tank(int x, int y, Dir dir, int SPEED) {
+    public Tank(int x, int y, Dir dir) {
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.SPEED = SPEED;
     }
 
     public void paint(Graphics graphicsg) {
