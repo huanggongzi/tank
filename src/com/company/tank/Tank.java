@@ -3,7 +3,9 @@ package com.company.tank;
 import java.awt.*;
 
 public class Tank {
+    // 横坐标
     int x;
+    // 纵坐标
     int y;
     Dir dir;
     private boolean moving = false;
@@ -12,7 +14,7 @@ public class Tank {
     public boolean isMoving() {
         return moving;
     }
- 
+
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
@@ -33,7 +35,10 @@ public class Tank {
     }
 
     public void paint(Graphics graphicsg) {
+        Color c = graphicsg.getColor();
+        graphicsg.setColor(Color.YELLOW);
         graphicsg.fillRect(x, y, 50, 50);
+        graphicsg.setColor(c);
         move(moving);
     }
 

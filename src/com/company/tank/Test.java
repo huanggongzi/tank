@@ -2,7 +2,7 @@ package com.company.tank;
 
 import java.awt.*;
 
-public class T {
+public class Test {
     public static void main(String[] args) throws InterruptedException {
         TankFrame tankFrame = new TankFrame();
 
