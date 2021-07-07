@@ -7,11 +7,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     Tank myTank = new Tank(200, 200, Dir.DOWN, this);
-    Bullet myBullet = new Bullet(200, 200, Dir.DOWN);
+    Bullet myBullet = new Bullet(200, 200, Dir.DOWN, this);
+    ArrayList<Bullet> bulletList = new ArrayList<Bullet>();
 
     public TankFrame() {
         setSize(800, 600);
@@ -46,8 +49,15 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics graphicsg) {
-        myBullet.paint(graphicsg);
+        // 上面标记着子弹的数量
+        Color c = graphicsg.getColor();
+        graphicsg.setColor(Color.WHITE);
+        graphicsg.drawString("当前含有的子弹数：" + bulletList.size(), 10, 60);
+        graphicsg.setColor(c);
         myTank.paint(graphicsg);
+        for (int i = bulletList.size() - 1; i >= 0; i--) {
+            bulletList.get(i).paint(graphicsg);
+        }
     }
 
     /**
